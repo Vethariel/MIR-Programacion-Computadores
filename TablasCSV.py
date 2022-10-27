@@ -4,7 +4,8 @@ class TablasCSV():
     def __init__(self, nombre_csv, fieldnames) -> None:
         
         self.nombre_csv = nombre_csv  
-        self.fieldnames = fieldnames   
+        self.fieldnames = fieldnames 
+        self.crear_csv_si_no_existe()
     
     # Inicializar tabla
     def crear_csv_si_no_existe(self):
@@ -18,7 +19,7 @@ class TablasCSV():
             pass        
     
     # Validacion de datos
-    def check_dato(self, *args, **kwargs):
+    def check_dato(self, dict):
         
         dato_existe = False
 
@@ -26,11 +27,13 @@ class TablasCSV():
             csv_reader = csv.DictReader(tabla_csv)
 
             for row in csv_reader:
-                for key, value in kwargs.items():
+                for key, value in dict.items():
                     if row[key] == value:
                         dato_existe = True
                     else:
                         dato_existe = False
+                if dato_existe == True:
+                    break
 
         return dato_existe
     
