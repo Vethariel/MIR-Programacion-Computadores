@@ -14,7 +14,7 @@ class Cuenta():
     
     def check_ingreso(self, cuentas, email, contra):
         
-        contra_hash = Cuenta.codificar_contra(contra)
+        contra_hash = codificar_contra(contra)
         cuenta_valida = cuentas.check_dato({"email":email,"contra":contra_hash})
         
         if cuenta_valida:
