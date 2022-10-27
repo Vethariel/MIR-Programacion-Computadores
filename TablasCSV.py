@@ -18,7 +18,7 @@ class TablasCSV():
             pass        
     
     # Validacion de datos
-    def check_dato(self, dato, fieldname):
+    def check_dato(self, *args, **kwargs):
         
         dato_existe = False
 
@@ -26,10 +26,27 @@ class TablasCSV():
             csv_reader = csv.DictReader(tabla_csv)
 
             for row in csv_reader:
-                if row[fieldname] == dato:
-                    dato_existe = True
+                for key, value in kwargs.items():
+                    if row[key] == value:
+                        dato_existe = True
+                    else:
+                        dato_existe = False
 
         return dato_existe
+    
+    # Obtencion de datos
+    def get_registro(self, key, value):
+        
+        registro = {}
+        
+        with open(self.nombre_csv, mode='r') as tabla_csv:
+            csv_reader = csv.DictReader(tabla_csv)
+
+            for row in csv_reader:
+                if row[key] == value:
+                    registro = row
+
+        return registro
 
     # Crear nuevas entradas
     def crear_registro_nuevo(self,*args):
