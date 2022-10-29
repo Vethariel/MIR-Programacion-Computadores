@@ -23,14 +23,8 @@ class TablasCSV():
             pass        
     
     
-    def check_dato(self, dict:dict):
+    def check_dato(self, data:dict)->bool:
         """Revisa si un registro existe de acuerdo a un dato o una serie de datos 
-
-        Args:
-            dict (dict): Datos a verificar 
-
-        Returns:
-            bool: Valor si encuentra o no el registro
         """        
         
         dato_existe = False
@@ -39,7 +33,7 @@ class TablasCSV():
             csv_reader = csv.DictReader(tabla_csv)
 
             for row in csv_reader:
-                for key, value in dict.items():
+                for key, value in data.items():
                     if row[key] == value:
                         dato_existe = True
                     else:
@@ -50,15 +44,8 @@ class TablasCSV():
         return dato_existe
     
     
-    def get_registro(self, key:str, value:str):
+    def get_registro(self, key:str, value:str)->dict:
         """Devuelve el valor del registro segun un identificador
-
-        Args:
-            key (string): Nombre del campo del identificador
-            value (string): Valor del identificador
-
-        Returns:
-            diccionario: Registro indicado del csv
         """        
         
         registro = {}
@@ -75,10 +62,6 @@ class TablasCSV():
 
     def crear_registro_nuevo(self,*args:any):
         """Adiciona un nuevo registro al final del csv
-        
-        Args:
-            *args: Recibe una cantidad variable de datos que va en orden 
-            de acuerdo a los fieldnames
         """        
         
         registro = {}
@@ -89,14 +72,11 @@ class TablasCSV():
         with open(self.nombre_csv, mode='a') as tabla_csv:
             writer = csv.DictWriter(tabla_csv, fieldnames=self.fieldnames)
             writer.writerow(registro)
+            
     
-
-    def eliminar_registro(self,dict:dict):
-        """Elimina un registro del archivo csv por medio de reescritura
-
-        Args:
-            dict (diccionario): Recibe la clave y el valor que se excluira.
-            Recibe multiples datos.
+    def editar_registro(self,id:tuple,data:dict):
+        """Edita un registro del archivo csv por reescritura
+        de acuerdo a un identificador y la serie de datos que se desean modificar
         """        
         
         temp_csv = []
@@ -104,7 +84,27 @@ class TablasCSV():
         with open(self.nombre_csv, mode='r') as tabla_csv:
             csv_reader = csv.DictReader(tabla_csv)
             for row in csv_reader:
-                for key, value in dict.items():
+                if row[id[0]] == id[1]:
+                    for key, value in data.items():
+                        row[key] = value
+                temp_csv.append(row)
+        
+        with open(self.nombre_csv, "w") as tabla_csv:
+                writer = csv.DictWriter(tabla_csv, fieldnames=self.fieldnames)
+                writer.writeheader()
+                writer.writerows(temp_csv)
+    
+
+    def eliminar_registro(self,data:dict):
+        """Elimina un registro del archivo csv por medio de reescritura
+        """        
+        
+        temp_csv = []
+        
+        with open(self.nombre_csv, mode='r') as tabla_csv:
+            csv_reader = csv.DictReader(tabla_csv)
+            for row in csv_reader:
+                for key, value in data.items():
                     if row[key] != value:
                         temp_csv.append(row)
         
