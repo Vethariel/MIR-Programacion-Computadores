@@ -3,8 +3,11 @@ import re
 import string
 import uuid
 
+from TablasCSV import TablasCSV
+
 class Cuenta():
-    
+    """Crear un objeto cuenta
+    """    
     def __init__(self) -> None:
         
         self.email = ""
@@ -12,8 +15,10 @@ class Cuenta():
         self.accountID = ""
         
     
-    def check_ingreso(self, cuentas, email, contra):
-        
+    def check_ingreso(self, cuentas:TablasCSV, email:str, contra:str)->bool:
+        """Verifica que la cuenta existe en el archivo csv.
+        Si lo esta, asigna los datos a este objeto
+        """        
         contra_hash = codificar_contra(contra)
         cuenta_valida = cuentas.check_dato({"email":email,"contra":contra_hash})
         
@@ -26,16 +31,30 @@ class Cuenta():
         
         return cuenta_valida
     
+    
+    def eliminar_cuenta(self, cuentas:TablasCSV):
+        """Elimina la cuenta del registro en el csv y vacia este objeto
+        """        
+        
+        cuentas.eliminar_registro({"accountID":self.accountID})
+        self.email = ""
+        self.contra = ""
+        self.accountID = ""
+    
 # Misc 
 
-def crear_cuenta_nueva(cuentas, email, contra):
+def crear_cuenta_nueva(cuentas:TablasCSV, email:str, contra:str):
+    """Asigna un nuevo registro en el archivo csv de cuentas
+    """    
     
     contra_hash = codificar_contra(contra)
     uid = uuid.uuid1()
     cuentas.crear_registro_nuevo(email,contra_hash,uid)
         
         
-def codificar_contra(contra):
+def codificar_contra(contra:str)->str:
+    """Codifica la contrasenna en hexadecimal
+    """    
     
     auth = contra.encode()
     auth_hash = hashlib.md5(auth).hexdigest()
@@ -43,23 +62,28 @@ def codificar_contra(contra):
     return auth_hash
 
 
-def check_email_valido(email):
-    
+def check_email_valido(email:str)->bool:
+    """Verifica si el correo cumple con el formato estandar
+    """    
     pat = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
     email_valido = re.match(pat,email)
 
     return not email_valido
 
 
-def check_email_existe(cuentas, email):
-    
+def check_email_existe(cuentas:TablasCSV, email:str)->bool:
+    """Verifica si el email existe en el archivo csv de cuentas
+    """    
     cuenta_existe = cuentas.check_dato({"email":email})
     
     return cuenta_existe
 
 
-def check_contra_valida(contra):
-    
+def check_contra_valida(contra:str)->bool:
+    """Verifica si la contraseña cumple con los requerimientos - 
+    minimo 8 caracteres, una mayuscula, una minuscula, un numero y 
+    un simbolo
+    """    
     l, u, c, d = 0, 0, 0, 0
     specialchar="$@_"
     if (len(contra) >= 8):
