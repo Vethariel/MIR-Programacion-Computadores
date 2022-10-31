@@ -1,6 +1,124 @@
 import Cuenta
+from TablasCSV import TablasCSV
+from Usuario import Usuario
 
-def crear_info_usuario(usuario, usuarios):
+def modificar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV):
+        
+    print("\n*Modificar cuenta*\n")
+
+    opciones = {"email":usuario.email,
+                "contra":"*******"}
+    
+    back = False
+    while not back:
+        print("\nElija el dato a editar:\n")
+
+        for opcion in opciones:
+            print(f"{opcion} - {opciones[opcion]}")
+
+        print()
+        opcion = input(">>> ").lower()
+
+        while opcion not in opciones:
+            print("ADV: Opcion no valida")
+            opcion = input(">>> ").lower()
+            
+        if opcion == "email":
+            
+            email = input("Escriba el email: ")
+
+            while Cuenta.check_email_valido(email):
+                
+                print("ADV: El email no es valido")
+                email = input("Escriba el email: ")
+            
+            usuario.editar_cuenta(cuentas,{opcion:email})
+            
+            print("\Correo cambiado")
+
+        if opcion == "contra":
+            
+            contra = input("Escriba la contrasena: ")
+
+            while Cuenta.check_contra_valida(contra):
+                print("ADV: La contrasena no es valida")
+                contra = input("Escriba la contrasena: ")
+
+            confirma_contra = input("Confirme la contrasena: ")
+
+            while contra != confirma_contra:
+                
+                print("ADV: Las contrasenas no coinciden")
+                contra = input("Escriba la contrasena: ")
+
+                while Cuenta.check_contra_valida(contra):
+                    print("ADV: La contrasena no es valida")
+                    contra = input("Escriba la contrasena: ")
+
+                confirma_contra = input("Confirme la contrasena: ")
+            
+            usuario.editar_cuenta(cuentas,{opcion:contra})
+            
+            print("\nContrasenna cambiada")
+                
+        if opcion == "back":
+            back = True
+
+def modificar_info_usuario(usuario:Usuario,usuarios:TablasCSV):
+        
+    print("\n*Modificar usuario*\n")
+    
+    opciones = {"nombres":usuario.nombres,
+                "apellidos":usuario.apellidos,
+                "nickname":usuario.nickname,
+                "fecha_nacimiento":usuario.fecha_de_nacimiento,
+                "back":"Volver al menu principal"}
+    
+    back = False
+    while not back:
+        print("\nElija el dato a editar:\n")
+
+        for opcion in opciones:
+            print(f"{opcion} - {opciones[opcion]}")
+
+        print()
+        opcion = input(">>> ").lower()
+
+        while opcion not in opciones:
+            print("ADV: Opcion no valida")
+            opcion = input(">>> ").lower()
+            
+        if opcion != "back" and opcion in opciones:
+                nuevo_dato = input("Editar "+ opciones[opcion]+": ")
+                usuario.editar_cuenta(usuarios,opcion,nuevo_dato)
+                
+        if opcion == "back":
+            back = True
+
+def eliminar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV,usuarios:TablasCSV):
+    
+    eliminar_cuenta = input("\n¿Esta seguro que desea eliminar la cuenta?\nEsta accion no se puede deshacer").lower()
+    
+    if eliminar_cuenta == "si":
+        
+        usuario.eliminar_cuenta(cuentas)
+        usuario.eliminar_usuario(usuarios)
+        print("\nCuenta eliminada")
+
+
+def mostrar_info_usuario(usuario:Usuario):
+    
+    print("\n*Gestionar usuario*\n")
+    
+    print("Correo:",usuario.email)
+    print("Contrasenna:","*******")
+    print("Nombres:",usuario.nombres)
+    print("Apellidos:",usuario.apellidos)
+    print("Apodo:",usuario.nickname)
+    print("Fecha de nacimiento:",usuario.fecha_de_nacimiento)
+    
+    
+def crear_info_usuario(usuario:Usuario, usuarios:TablasCSV):
     
     print("\n*Crear usuario*\n")
     
@@ -13,7 +131,7 @@ def crear_info_usuario(usuario, usuarios):
     print("\nUsuario creado\n")
 
 
-def ingreso(usuario, cuentas):
+def ingreso(usuario:Usuario, cuentas:TablasCSV)->bool:
     
     print("\n*Ingresar a su cuenta*\n")
     email = input("Escriba el email: ")
@@ -26,7 +144,7 @@ def ingreso(usuario, cuentas):
         nueva_cuenta = input("Desea crear una cuenta? ").lower()
         
         if nueva_cuenta == "si":
-            crear_cuenta(usuario, cuentas)
+            crear_cuenta(cuentas)
             
         print("\n*Ingresar a su cuenta*\n")
         email = input("Escriba el email: ")
@@ -38,7 +156,7 @@ def ingreso(usuario, cuentas):
 
     return ingreso
 
-def crear_cuenta(usuario, cuentas):
+def crear_cuenta(cuentas:TablasCSV):
 
     print("\n*Crear una nueva cuenta*\n")
     email = input("Escriba el email: ")
