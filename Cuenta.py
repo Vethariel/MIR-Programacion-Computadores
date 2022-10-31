@@ -41,6 +41,20 @@ class Cuenta():
         self.contra = ""
         self.accountID = ""
     
+    def editar_cuenta(self, cuentas:TablasCSV, campo:str, dato:str):
+        """Modifica el valor del registro en el archivo csv de cuentas 
+        y actualiza los valores de este objeto
+        """        
+        
+        if campo == "contra":
+            dato = codificar_contra(dato)
+            self.contra = dato
+            
+        if campo == "email" and self.email != dato:
+            self.email = dato
+            
+        cuentas.editar_registro(("accountID",self.accountID),{campo:dato})
+    
 # Misc 
 
 def crear_cuenta_nueva(cuentas:TablasCSV, email:str, contra:str):
