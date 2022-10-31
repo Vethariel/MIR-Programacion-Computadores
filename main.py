@@ -62,7 +62,7 @@ def main():
                 interfaz_actual = 1
                 comandos = interfaces[interfaz_actual]
             if comando == "ncuenta":
-                Consola.crear_cuenta(usuario, cuentas)
+                Consola.crear_cuenta(cuentas)
         
         if logged:
             if comando == "gcuenta":
@@ -72,7 +72,7 @@ def main():
             if comando == "mcuenta":
                 Consola.modificar_cuenta_usuario(usuario,cuentas)
             if comando == "minfo":
-                Consola.modificar_cuenta_usuario(usuario,usuarios)
+                Consola.modificar_info_usuario(usuario,usuarios)
             if comando == "delcuenta":
                 cuenta_eliminada = Consola.eliminar_cuenta_usuario(usuario,cuentas,usuarios)
                 if cuenta_eliminada:
@@ -84,7 +84,7 @@ def main():
             if comando == "signout":
                 usuario.vaciar_usuario()
                 logged = False
-                interfaz_actual = 1
+                interfaz_actual = 0
                 comandos = interfaces[interfaz_actual]
             if comando == "spatron":
                 #seguir_patron()

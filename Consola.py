@@ -7,7 +7,8 @@ def modificar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV):
     print("\n*Modificar cuenta*\n")
 
     opciones = {"email":usuario.email,
-                "contra":"*******"}
+                "contra":"*******",
+                "back":"Volver al menu principal"}
     
     back = False
     while not back:
@@ -32,7 +33,8 @@ def modificar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV):
                 print("ADV: El email no es valido")
                 email = input("Escriba el email: ")
             
-            usuario.editar_cuenta(cuentas,{opcion:email})
+            usuario.editar_cuenta(cuentas,opcion,email)
+            opciones[opcion] = usuario.email
             
             print("\Correo cambiado")
 
@@ -57,7 +59,7 @@ def modificar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV):
 
                 confirma_contra = input("Confirme la contrasena: ")
             
-            usuario.editar_cuenta(cuentas,{opcion:contra})
+            usuario.editar_cuenta(cuentas,opcion,contra)
             
             print("\nContrasenna cambiada")
                 
@@ -87,23 +89,39 @@ def modificar_info_usuario(usuario:Usuario,usuarios:TablasCSV):
         while opcion not in opciones:
             print("ADV: Opcion no valida")
             opcion = input(">>> ").lower()
+        
             
         if opcion != "back" and opcion in opciones:
-                nuevo_dato = input("Editar "+ opciones[opcion]+": ")
-                usuario.editar_cuenta(usuarios,opcion,nuevo_dato)
+                nuevo_dato = input("Editar "+ opcion +": ")
+                usuario.editar_usuario(usuarios,opcion,nuevo_dato)
                 
+        if opcion == "nombres":
+            opciones[opcion] = usuario.nombres
+        elif opcion == "apellidos":
+            opciones[opcion] = usuario.apellidos
+        elif opcion == "nickname":
+            opciones[opcion] = usuario.nickname
+        elif opcion == "fecha_nacimiento":
+            opciones[opcion] = usuario.fecha_de_nacimiento
+        
         if opcion == "back":
             back = True
+        
 
 def eliminar_cuenta_usuario(usuario:Usuario,cuentas:TablasCSV,usuarios:TablasCSV):
     
-    eliminar_cuenta = input("\n¿Esta seguro que desea eliminar la cuenta?\nEsta accion no se puede deshacer").lower()
+    eliminar_cuenta = input("\n¿Esta seguro que desea eliminar la cuenta?\nEsta accion no se puede deshacer\n>>> ").lower()
+    cuenta_eliminada = False
     
     if eliminar_cuenta == "si":
         
-        usuario.eliminar_cuenta(cuentas)
         usuario.eliminar_usuario(usuarios)
+        usuario.eliminar_cuenta(cuentas)
         print("\nCuenta eliminada")
+        cuenta_eliminada = True
+    
+    return cuenta_eliminada
+    
 
 
 def mostrar_info_usuario(usuario:Usuario):

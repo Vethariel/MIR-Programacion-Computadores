@@ -50,7 +50,7 @@ class Cuenta():
             dato = codificar_contra(dato)
             self.contra = dato
             
-        if campo == "email" and self.email != dato:
+        if campo == "email":
             self.email = dato
             
         cuentas.editar_registro(("accountID",self.accountID),{campo:dato})
