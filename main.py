@@ -4,6 +4,7 @@ def main():
 
     print("Bienvenido a MIR")
     
+    # Pre init
     
     nombre_csv = "cuentas.csv"
     fieldnames = ["email", "contra", "accountID"]
@@ -24,9 +25,16 @@ def main():
     usuario = Usuario.Usuario()
     logged = False
 
-    interfaz1 = {"login":"Ingresar a su cuenta", "ncuenta":"Crear una nueva cuenta", "exit":"Salir"}
-    interfaz2 = {"spatron":"Seguir un patrones", "apatron":"Agregar patron nuevo", "signout":"Cerrar sesion", "exit":"Salir"}
-    comandos = interfaz1
+    interfaz1 = {"login":"Ingresar a su cuenta", "ncuenta":"Crear una nueva cuenta", 
+                 "exit":"Salir"}
+    interfaz2 = {"spatron":"Seguir un patrones", "apatron":"Agregar patron nuevo", 
+                  "gcuenta":"Gestionar cuenta","signout":"Cerrar sesion", "exit":"Salir"}
+    interfaz3 = {"mcuenta":"Modificar cuenta","minfo":"Modificar informacion",
+                 "delcuenta":"Eliminar cuenta",
+                 "back":"Volver al menu principal"}
+    interfaces = (interfaz1,interfaz2,interfaz3)
+    interfaz_actual = 0
+    comandos = interfaces[interfaz_actual]
     exit = False
 
     while not exit:
@@ -51,15 +59,33 @@ def main():
                 logged = Consola.ingreso(usuario, cuentas)
                 if not usuario.check_info(usuarios):
                     Consola.crear_info_usuario(usuario, usuarios)
-                comandos = interfaz2
+                interfaz_actual = 1
+                comandos = interfaces[interfaz_actual]
             if comando == "ncuenta":
                 Consola.crear_cuenta(usuario, cuentas)
         
         if logged:
+            if comando == "gcuenta":
+                comandos = Consola.mostrar_info_usuario(usuario)
+                interfaz_actual = 2
+                comandos = interfaces[interfaz_actual]
+            if comando == "mcuenta":
+                Consola.modificar_cuenta_usuario(usuario,cuentas)
+            if comando == "minfo":
+                Consola.modificar_cuenta_usuario(usuario,usuarios)
+            if comando == "delcuenta":
+                cuenta_eliminada = Consola.eliminar_cuenta_usuario(usuario,cuentas,usuarios)
+                if cuenta_eliminada:
+                    comando = "signout"
+            if comando == "back":
+                interfaz_actual-=1
+                comandos = interfaces[interfaz_actual]
+            
             if comando == "signout":
-                
+                usuario.vaciar_usuario()
                 logged = False
-                comandos = interfaz1
+                interfaz_actual = 1
+                comandos = interfaces[interfaz_actual]
             if comando == "spatron":
                 #seguir_patron()
                 pass
