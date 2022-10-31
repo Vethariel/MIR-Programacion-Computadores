@@ -62,3 +62,14 @@ class Usuario(Cuenta.Cuenta):
         self.apellidos = ""
         self.nickname = ""
         self.fecha_de_nacimiento = ""
+    
+    def editar_usuario(self, usuarios:TablasCSV, campo:str, dato:str):
+        
+        usuarios.editar_registro(("accountID",self.accountID),{campo:dato})
+        
+        datos = {"nombres":self.nombres,
+                "apellidos":self.apellidos,
+                "nickname":self.nickname,
+                "fecha_nacimiento":self.fecha_de_nacimiento}
+        
+        datos[campo] = dato
