@@ -74,4 +74,13 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# CSV files
+*.csv
+
+# Cache
+*.pyc
+
+# Tests
+/test.py
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,venv
