@@ -81,6 +81,9 @@ $RECYCLE.BIN/
 *.pyc
 
 # Tests
-/test.py
+*test.py
+
+# UI py files
+ui_*
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,venv

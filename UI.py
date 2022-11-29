@@ -33,14 +33,14 @@ class Ingreso_UI(QDialog):
         email = self.email_in.text()
         contra = self.contra_in.text()
         adv = ""
-        if usuario.check_ingreso(cuentas, email, contra):
-            print("Ingreso")
-        else:
-            adv = "Email o contrasena incorrecta"
-        if Cuenta.check_email_valido(email):
-            adv = "El email no es valido"
         if len(email)==0 or len(contra)==0:
             adv = "Debe llenar todos los campos"
+        elif Cuenta.check_email_valido(email):
+            adv = "El email no es valido"
+        elif not usuario.check_ingreso(cuentas, email, contra):
+            adv = "Email o contrasena incorrecta"
+        else:
+            print("Ingreso")
         self.adv_ingreso.setText(adv)
     
     def ir_crear_cuenta(self):
@@ -58,12 +58,27 @@ class Crear_Cuenta_UI(QDialog):
     
     def crear_cuenta(self):
         email = self.email_in.text()
-        if self.contra_in.text() == self.conf_contra_in.text():
-            contra = self.contra_in.text()
+        contra = self.contra_in.text()
+        conf_contra = self.conf_contra_in.text()
+        adv = ""
+        if len(email)==0 or len(contra)==0 or len(conf_contra)==0:
+            adv = "Debe llenar todos los campos"
+        elif Cuenta.check_email_valido(email):
+            adv = "El email no es valido"
+        elif Cuenta.check_email_existe(cuentas, email):
+            adv = "El email ya esta registrado"
+        elif Cuenta.check_contra_valida(contra):
+            adv = "La contraseña no es valida"
+        elif contra != conf_contra:
+            adv = "Las contraseñas no coinciden"
+        else:
+            Cuenta.crear_cuenta_nueva(cuentas, email, contra)
             print("Crear cuenta")
             ingreso = Ingreso_UI()
             widget.addWidget(ingreso)
             widget.setCurrentIndex(widget.currentIndex()+1)
+        
+        self.adv_ingreso.setText(adv)
 
 
 nombre_csv = "cuentas.csv"
