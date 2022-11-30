@@ -295,11 +295,11 @@ if __name__=="__main__":
     myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
-    nombre_csv = "cuentas.csv"
+    nombre_csv = "CSV files/cuentas.csv"
     fieldnames = ["email", "contra", "accountID"]
     cuentas = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
-    nombre_csv = "usuarios.csv"
+    nombre_csv = "CSV files/usuarios.csv"
     fieldnames = ["nombres", "apellidos", "nickname", "fecha_nacimiento",  "accountID"]
     usuarios = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
