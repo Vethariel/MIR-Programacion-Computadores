@@ -63,15 +63,13 @@ class Usuario(Cuenta.Cuenta):
         self.nickname = ""
         self.fecha_de_nacimiento = ""
     
-    def editar_usuario(self, usuarios:TablasCSV, campo:str, dato:str):
+    def editar_usuario(self, usuarios:TablasCSV, nombres:str,apellidos:str,nickname:str,fecha_nacimiento:str):
         
-        if campo == "nombres":
-            self.nombres = dato
-        elif campo == "apellidos":
-            self.apellidos = dato
-        elif campo == "nickname":
-            self.nickname = dato
-        elif campo == "fecha_nacimiento":
-            self.fecha_de_nacimiento = dato
+        self.nombres = nombres
+        self.apellidos = apellidos
+        self.nickname = nickname
+        self.fecha_de_nacimiento = fecha_nacimiento
+        
+        datos = {"nombres":nombres,"apellidos":apellidos,"nickname":nickname,"fecha_nacimiento":fecha_nacimiento}
             
-        usuarios.editar_registro(("accountID",self.accountID),{campo:dato})
+        usuarios.editar_registro(("accountID",self.accountID),datos)
