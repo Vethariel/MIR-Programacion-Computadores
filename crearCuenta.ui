@@ -184,6 +184,25 @@ background-color: rgba(255, 255, 255, 50);</string>
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="boton_regreso">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(&quot;return.png&quot;);
+background-repeat: no-repeat;
+background-position: center;
+background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
