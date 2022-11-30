@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="bgwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>-1</y>
+     <width>751</width>
+     <height>551</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#bgwidget{background-color:qlineargradient(spread:reflect, x1:0.631, y1:0.840909, x2:0.266591, y2:0.13, stop:0 rgba(232, 255, 255, 255), stop:1 rgba(230, 147, 230, 255));}
+</string>
+   </property>
+   <widget class="QPushButton" name="boton_nuevo_usuario">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>480</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(170, 255, 255);
+	color: rgb(0, 85, 255);
+}
+QPushButton:hover{
+background-color: rgb(200, 255, 255);
+	color: rgb(0, 170, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Finalizar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>90</y>
+      <width>291</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:28pt;
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Ingresa tus datos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="adv_ingreso">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>440</y>
+      <width>291</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>160</y>
+      <width>314</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="styleSheet">
+        <string notr="true">font-size:12pt;</string>
+       </property>
+       <property name="text">
+        <string>Nombres</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="nombres_in">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:12pt;
+}
+QLineEdit:focus{
+border: 2px solid rgb(255, 100, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="styleSheet">
+        <string notr="true">font-size:12pt;</string>
+       </property>
+       <property name="text">
+        <string>Apellidos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="apellidos_in">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:12pt;
+}
+QLineEdit:focus{
+border: 2px solid rgb(255, 100, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="styleSheet">
+        <string notr="true">font-size:12pt;</string>
+       </property>
+       <property name="text">
+        <string>Usuario</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="nickname_in">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:12pt;
+}
+QLineEdit:focus{
+border: 2px solid rgb(255, 100, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="styleSheet">
+        <string notr="true">font-size:12pt;</string>
+       </property>
+       <property name="text">
+        <string>Fecha de nacimiento</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="fecha_nacimiento_in">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QDateEdit{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:12pt;
+}
+QDateEdit:focus{
+border: 2px solid rgb(255, 100, 255);
+}</string>
+       </property>
+       <property name="wrapping">
+        <bool>false</bool>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="readOnly">
+        <bool>false</bool>
+       </property>
+       <property name="buttonSymbols">
+        <enum>QAbstractSpinBox::UpDownArrows</enum>
+       </property>
+       <property name="keyboardTracking">
+        <bool>true</bool>
+       </property>
+       <property name="maximumDate">
+        <date>
+         <year>2100</year>
+         <month>12</month>
+         <day>31</day>
+        </date>
+       </property>
+       <property name="minimumDate">
+        <date>
+         <year>1752</year>
+         <month>9</month>
+         <day>14</day>
+        </date>
+       </property>
+       <property name="currentSection">
+        <enum>QDateTimeEdit::DaySection</enum>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>751</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(255, 255, 255,200);
+font: 48pt &quot;Century Gothic&quot;;
+color: rgb(255, 130, 253);</string>
+    </property>
+    <property name="text">
+     <string>MIR</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boton_regreso">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>15</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-image: url(&quot;return.png&quot;);
+background-repeat: no-repeat;
+background-position: center;
+background-color: rgb(255, 255, 255);
+}
+QPushButton:hover{
+background-color:rgb(255, 220, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
