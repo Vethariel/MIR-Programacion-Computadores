@@ -272,7 +272,7 @@ color: rgb(255, 130, 253);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-background-image: url(&quot;return.png&quot;);
+background-image: url(&quot;Icons/return.png&quot;);
 background-repeat: no-repeat;
 background-position: center;
 background-color: rgb(255, 255, 255);
@@ -296,7 +296,7 @@ background-color:rgb(255, 220, 255);
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton{
-background-image: url(&quot;signout.png&quot;);
+background-image: url(&quot;Icons/signout.png&quot;);
 background-repeat: no-repeat;
 background-position: center;
 background-color: rgb(255, 255, 255);
