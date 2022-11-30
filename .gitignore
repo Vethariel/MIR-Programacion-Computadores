@@ -82,6 +82,7 @@ $RECYCLE.BIN/
 
 # Tests
 *test.py
+/test
 
 # UI py files
 ui_*
