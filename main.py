@@ -1,9 +1,9 @@
 import sys
 from PyQt6 import QtWidgets, QtGui
-from PyQt6.QtWidgets import QDialog, QApplication, QWidget
+from PyQt6.QtWidgets import QDialog, QApplication
 from PyQt6.uic import loadUi
 from PyQt6.QtCore import QDate
-import TablasCSV, Usuario, Cuenta
+import Modules.TablasCSV as TablasCSV, Modules.Usuario as Usuario, Modules.Cuenta as Cuenta
 import ctypes
 
 class Bienvenida_UI(QDialog):
@@ -291,30 +291,30 @@ class Eliminar_Cuenta_UI(QDialog):
         widget.addWidget(bienvenida)
         widget.removeWidget(widget.currentWidget())
 
+if __name__=="__main__":
+    myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
-myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+    nombre_csv = "cuentas.csv"
+    fieldnames = ["email", "contra", "accountID"]
+    cuentas = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
-nombre_csv = "cuentas.csv"
-fieldnames = ["email", "contra", "accountID"]
-cuentas = TablasCSV.TablasCSV(nombre_csv, fieldnames)
+    nombre_csv = "usuarios.csv"
+    fieldnames = ["nombres", "apellidos", "nickname", "fecha_nacimiento",  "accountID"]
+    usuarios = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
-nombre_csv = "usuarios.csv"
-fieldnames = ["nombres", "apellidos", "nickname", "fecha_nacimiento",  "accountID"]
-usuarios = TablasCSV.TablasCSV(nombre_csv, fieldnames)
+    usuario = Usuario.Usuario()
 
-usuario = Usuario.Usuario()
-
-app = QApplication(sys.argv)
-bienvenida = Bienvenida_UI()
-widget = QtWidgets.QStackedWidget()
-widget.setWindowTitle("MIR")
-widget.setWindowIcon(QtGui.QIcon('logo.png'))
-widget.addWidget(bienvenida)
-widget.setFixedWidth(750)
-widget.setFixedHeight(550)
-widget.show()
-try:
-    sys.exit(app.exec())
-except:
-    print("Exiting")
+    app = QApplication(sys.argv)
+    bienvenida = Bienvenida_UI()
+    widget = QtWidgets.QStackedWidget()
+    widget.setWindowTitle("MIR")
+    widget.setWindowIcon(QtGui.QIcon('logo.png'))
+    widget.addWidget(bienvenida)
+    widget.setFixedWidth(750)
+    widget.setFixedHeight(550)
+    widget.show()
+    try:
+        sys.exit(app.exec())
+    except:
+        print("Exiting")

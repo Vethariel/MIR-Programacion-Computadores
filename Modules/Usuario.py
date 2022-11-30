@@ -1,8 +1,8 @@
-import Cuenta
-from TablasCSV import TablasCSV
+import Modules.Cuenta as Cuenta
+from Modules.TablasCSV import TablasCSV
 
 class Usuario(Cuenta.Cuenta):
-    """Crea un objeto usuario y hereda dela clase Cuenta
+    """Crea un objeto usuario y hereda de la clase Cuenta
     """    
     def __init__(self) -> None:
         

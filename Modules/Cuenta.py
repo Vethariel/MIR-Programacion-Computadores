@@ -3,7 +3,7 @@ import re
 import string
 import uuid
 
-from TablasCSV import TablasCSV
+from Modules.TablasCSV import TablasCSV
 
 class Cuenta():
     """Crear un objeto cuenta
