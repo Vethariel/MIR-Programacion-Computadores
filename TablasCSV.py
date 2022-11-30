@@ -27,19 +27,20 @@ class TablasCSV():
         """Revisa si un registro existe de acuerdo a un dato o una serie de datos 
         """        
         
-        dato_existe = False
+        dato_existe = True
 
         with open(self.nombre_csv, mode='r') as tabla_csv:
             csv_reader = csv.DictReader(tabla_csv)
-
-            for row in csv_reader:
+            
+            def validate(row):
                 for key, value in data.items():
-                    if row[key] == value:
-                        dato_existe = True
-                    else:
-                        dato_existe = False
-                if dato_existe == True:
-                    break
+                    
+                    if row[key] != value:
+                        return  False
+                    
+                return True
+                    
+            dato_existe = any((validate(row) for row in csv_reader))
 
         return dato_existe
     
