@@ -269,7 +269,6 @@ class Eliminar_Patron_UI(QDialog):
         widget.addWidget(menu_principal)
         widget.removeWidget(widget.currentWidget())
         
-
 class Gestionar_Patron_UI(QDialog):
     def __init__(self,patron):
         super(Gestionar_Patron_UI,self).__init__()
