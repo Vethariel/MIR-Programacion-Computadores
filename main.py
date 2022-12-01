@@ -146,6 +146,7 @@ class Menu_Principal_UI(QDialog):
         loadUi("UI files/menuPrincipal.ui",self)
         self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
         self.boton_cuenta.clicked.connect(self.ir_cuenta)
+        self.boton_agregar_patron.clicked.connect(self.ir_nuevo_patron)
     
     def cerrar_sesion(self):
         usuario.vaciar_usuario()
@@ -156,6 +157,50 @@ class Menu_Principal_UI(QDialog):
     def ir_cuenta(self):
         gestionar_cuenta = Gestionar_Cuenta_UI()
         widget.addWidget(gestionar_cuenta)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_nuevo_patron(self):
+        nuevo_patron = Nuevo_Patron_UI()
+        widget.addWidget(nuevo_patron)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+
+class Editar_Patron_UI(QDialog):
+    def __init__(self):
+        super(Editar_Patron_UI,self).__init__()
+        loadUi("UI files/editarPatron.ui",self)
+
+class Eliminar_Patron_UI(QDialog):
+    def __init__(self):
+        super(Eliminar_Patron_UI,self).__init__()
+        loadUi("UI files/eliminarPatron.ui",self)
+
+class Gestionar_Patron_UI(QDialog):
+    def __init__(self):
+        super(Gestionar_Patron_UI,self).__init__()
+        loadUi("UI files/gestionarPatron.ui",self)
+    
+class Nuevo_Patron_UI(QDialog):
+    def __init__(self):
+        super(Nuevo_Patron_UI,self).__init__()
+        loadUi("UI files/nuevoPatron.ui",self)
+        self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
+        self.boton_cuenta.clicked.connect(self.ir_cuenta)
+        self.boton_nuevo_patron.clicked.connect(self.ir_menu_principal)
+    
+    def cerrar_sesion(self):
+        usuario.vaciar_usuario()
+        bienvenida = Bienvenida_UI()
+        widget.addWidget(bienvenida)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_cuenta(self):
+        gestionar_cuenta = Gestionar_Cuenta_UI()
+        widget.addWidget(gestionar_cuenta)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_menu_principal(self):
+        menu_principal = Menu_Principal_UI()
+        widget.addWidget(menu_principal)
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Gestionar_Cuenta_UI(QDialog):
@@ -291,6 +336,8 @@ class Eliminar_Cuenta_UI(QDialog):
         widget.addWidget(bienvenida)
         widget.removeWidget(widget.currentWidget())
 
+
+
 if __name__=="__main__":
     myappid = u'mycompany.myproduct.subproduct.version' # arbitrary string
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
@@ -304,12 +351,13 @@ if __name__=="__main__":
     usuarios = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
     usuario = Usuario.Usuario()
+    patrones = []
 
     app = QApplication(sys.argv)
     bienvenida = Bienvenida_UI()
     widget = QtWidgets.QStackedWidget()
     widget.setWindowTitle("MIR")
-    widget.setWindowIcon(QtGui.QIcon('logo.png'))
+    widget.setWindowIcon(QtGui.QIcon('Icons/logo.png'))
     widget.addWidget(bienvenida)
     widget.setFixedWidth(750)
     widget.setFixedHeight(550)
