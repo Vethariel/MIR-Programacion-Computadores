@@ -1,9 +1,10 @@
 import sys
-from PyQt6 import QtWidgets, QtGui
+from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtWidgets import QDialog, QApplication
 from PyQt6.uic import loadUi
 from PyQt6.QtCore import QDate
 import Modules.TablasCSV as TablasCSV, Modules.Usuario as Usuario, Modules.Cuenta as Cuenta
+import Modules.Patron as Patron
 import ctypes
 
 class Bienvenida_UI(QDialog):
@@ -147,6 +148,16 @@ class Menu_Principal_UI(QDialog):
         self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
         self.boton_cuenta.clicked.connect(self.ir_cuenta)
         self.boton_agregar_patron.clicked.connect(self.ir_nuevo_patron)
+        self.i = 0
+        if len(patrones) == 0:
+            self.patron_label.setText("Aun no tienes patrones")
+        else:
+            self.patron = patrones[0]
+            self.patron_label.setText(self.patron.titulo)
+            self.boton_anterior.clicked.connect(self.anterior_patron)
+            self.boton_siguiente.clicked.connect(self.siguiente_patron)
+            self.boton_ver.clicked.connect(self.ir_gestionar_patron)
+        
     
     def cerrar_sesion(self):
         usuario.vaciar_usuario()
@@ -163,29 +174,116 @@ class Menu_Principal_UI(QDialog):
         nuevo_patron = Nuevo_Patron_UI()
         widget.addWidget(nuevo_patron)
         widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_gestionar_patron(self):
+        gestionar_patron = Gestionar_Patron_UI(self.patron)
+        widget.addWidget(gestionar_patron)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def anterior_patron(self):
+        self.i -= 1
+        if self.i == -1:
+            self.i = len(patrones)-1
+        self.patron = patrones[self.i]
+        self.patron_label.setText(self.patron.titulo)
+    
+    def siguiente_patron(self):
+        self.i += 1
+        if self.i == len(patrones):
+            self.i = 0
+        self.patron = patrones[self.i]
+        self.patron_label.setText(self.patron.titulo)
 
 class Editar_Patron_UI(QDialog):
-    def __init__(self):
+    def __init__(self,patron):
         super(Editar_Patron_UI,self).__init__()
         loadUi("UI files/editarPatron.ui",self)
-
-class Eliminar_Patron_UI(QDialog):
-    def __init__(self):
-        super(Eliminar_Patron_UI,self).__init__()
-        loadUi("UI files/eliminarPatron.ui",self)
-
-class Gestionar_Patron_UI(QDialog):
-    def __init__(self):
-        super(Gestionar_Patron_UI,self).__init__()
-        loadUi("UI files/gestionarPatron.ui",self)
-    
-class Nuevo_Patron_UI(QDialog):
-    def __init__(self):
-        super(Nuevo_Patron_UI,self).__init__()
-        loadUi("UI files/nuevoPatron.ui",self)
+        self.patron = patron
         self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
         self.boton_cuenta.clicked.connect(self.ir_cuenta)
-        self.boton_nuevo_patron.clicked.connect(self.ir_menu_principal)
+        self.boton_regreso.clicked.connect(self.ir_gestionar_patron)
+        self.titulo_in.setText(self.patron.titulo)
+        self.categorias_in.setPlainText("\n".join(self.patron.categorias))
+        self.materiales_in.setPlainText("\n".join(self.patron.materiales))
+        self.abreviaturas_in.setPlainText("\n".join(self.patron.abreviaturas))
+        self.pasos_in.setPlainText("\n".join(self.patron.pasos))
+        self.boton_guardar_patron.clicked.connect(self.guardar_patron)
+        self.boton_eliminar_patron.clicked.connect(self.ir_eliminar_patron)
+    
+    def cerrar_sesion(self):
+        usuario.vaciar_usuario()
+        bienvenida = Bienvenida_UI()
+        widget.addWidget(bienvenida)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_cuenta(self):
+        gestionar_cuenta = Gestionar_Cuenta_UI()
+        widget.addWidget(gestionar_cuenta)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_gestionar_patron(self):
+        gestionar_patron = Gestionar_Patron_UI(self.patron)
+        widget.addWidget(gestionar_patron)
+        widget.removeWidget(widget.currentWidget())
+        
+    def guardar_patron(self):
+        titulo = self.titulo_in.text()
+        categorias_s = self.categorias_in.toPlainText()
+        materiales_s = self.materiales_in.toPlainText()
+        abreviaturas_s = self.abreviaturas_in.toPlainText()
+        pasos_s = self.pasos_in.toPlainText()
+        
+        categorias = categorias_s.splitlines()
+        materiales = materiales_s.splitlines()
+        abreviaturas = abreviaturas_s.splitlines()
+        pasos = pasos_s.splitlines()
+        
+        self.patron.editar_patron(titulo,categorias,materiales,abreviaturas,pasos,patrones)
+        
+        gestionar_patron = Gestionar_Patron_UI(self.patron)
+        widget.addWidget(gestionar_patron)
+        widget.removeWidget(widget.currentWidget())
+    
+    def ir_eliminar_patron(self):
+        eliminar_patron = Eliminar_Patron_UI(self.patron)
+        widget.addWidget(eliminar_patron)
+        widget.removeWidget(widget.currentWidget())
+
+class Eliminar_Patron_UI(QDialog):
+    def __init__(self,patron):
+        super(Eliminar_Patron_UI,self).__init__()
+        loadUi("UI files/eliminarPatron.ui",self)
+        self.patron = patron
+        self.boton_eliminar.clicked.connect(self.eliminar_patron)
+        self.boton_cancelar.clicked.connect(self.ir_editar_patron)
+    
+    def ir_editar_patron(self):
+        editar_patron = Editar_Patron_UI(self.patron)
+        widget.addWidget(editar_patron)
+        widget.removeWidget(widget.currentWidget())
+    
+    def eliminar_patron(self):
+        self.patron.eliminar_patron(patrones)
+        del(self.patron)
+        menu_principal = Menu_Principal_UI()
+        widget.addWidget(menu_principal)
+        widget.removeWidget(widget.currentWidget())
+        
+
+class Gestionar_Patron_UI(QDialog):
+    def __init__(self,patron):
+        super(Gestionar_Patron_UI,self).__init__()
+        loadUi("UI files/gestionarPatron.ui",self)
+        self.patron = patron
+        self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
+        self.boton_cuenta.clicked.connect(self.ir_cuenta)
+        self.boton_regreso.clicked.connect(self.ir_menu_principal)
+        self.titulo_label.setText(self.patron.titulo)
+        self.categorias_label.setText("\n".join(self.patron.categorias))
+        self.materiales_label.setText("\n".join(self.patron.materiales))
+        self.abreviaturas_label.setText("\n".join(self.patron.abreviaturas))
+        self.pasos_label.setText("\n".join(self.patron.pasos))
+        self.boton_editar_patron.clicked.connect(self.ir_editar_patron)
     
     def cerrar_sesion(self):
         usuario.vaciar_usuario()
@@ -199,6 +297,55 @@ class Nuevo_Patron_UI(QDialog):
         widget.setCurrentIndex(widget.currentIndex()+1)
     
     def ir_menu_principal(self):
+        menu_principal = Menu_Principal_UI()
+        widget.addWidget(menu_principal)
+        widget.removeWidget(widget.currentWidget())
+    
+    def ir_editar_patron(self):
+        editar_patron = Editar_Patron_UI(self.patron)
+        widget.addWidget(editar_patron)
+        widget.removeWidget(widget.currentWidget())
+    
+class Nuevo_Patron_UI(QDialog):
+    def __init__(self):
+        super(Nuevo_Patron_UI,self).__init__()
+        loadUi("UI files/nuevoPatron.ui",self)
+        self.boton_cerrar_sesion.clicked.connect(self.cerrar_sesion)
+        self.boton_cuenta.clicked.connect(self.ir_cuenta)
+        self.boton_nuevo_patron.clicked.connect(self.guardar_patron)
+        self.boton_regreso.clicked.connect(self.ir_menu_principal)
+    
+    def cerrar_sesion(self):
+        usuario.vaciar_usuario()
+        bienvenida = Bienvenida_UI()
+        widget.addWidget(bienvenida)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_cuenta(self):
+        gestionar_cuenta = Gestionar_Cuenta_UI()
+        widget.addWidget(gestionar_cuenta)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+    
+    def ir_menu_principal(self):
+        menu_principal = Menu_Principal_UI()
+        widget.addWidget(menu_principal)
+        widget.removeWidget(widget.currentWidget())
+    
+    def guardar_patron(self):
+        titulo = self.titulo_in.text()
+        categorias_s = self.categorias_in.toPlainText()
+        materiales_s = self.materiales_in.toPlainText()
+        abreviaturas_s = self.abreviaturas_in.toPlainText()
+        pasos_s = self.pasos_in.toPlainText()
+        
+        categorias = categorias_s.splitlines()
+        materiales = materiales_s.splitlines()
+        abreviaturas = abreviaturas_s.splitlines()
+        pasos = pasos_s.splitlines()
+        
+        patron1 = Patron.Patron()
+        patron1.escribir_patron(titulo,categorias,materiales,abreviaturas,pasos,patrones)
+        
         menu_principal = Menu_Principal_UI()
         widget.addWidget(menu_principal)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -351,7 +498,7 @@ if __name__=="__main__":
     usuarios = TablasCSV.TablasCSV(nombre_csv, fieldnames)
 
     usuario = Usuario.Usuario()
-    patrones = []
+    patrones = Patron.leer_patron()
 
     app = QApplication(sys.argv)
     bienvenida = Bienvenida_UI()
