@@ -26,6 +26,31 @@
     <string notr="true">QWidget#bgwidget{background-color:qlineargradient(spread:reflect, x1:0.631, y1:0.840909, x2:0.266591, y2:0.13, stop:0 rgba(232, 255, 255, 255), stop:1 rgba(230, 147, 230, 255));}
 </string>
    </property>
+   <widget class="QPushButton" name="boton_nuevo_usuario">
+    <property name="geometry">
+     <rect>
+      <x>315</x>
+      <y>490</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(170, 255, 255);
+	color: rgb(0, 85, 255);
+}
+QPushButton:hover{
+background-color: rgb(200, 255, 255);
+	color: rgb(0, 170, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Finalizar</string>
+    </property>
+   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
@@ -157,16 +182,11 @@ color: rgb(255, 255, 255);</string>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>200</y>
+      <x>150</x>
+      <y>205</y>
       <width>421</width>
-      <height>321</height>
+      <height>216</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255,50);
-border:2px solid rgb(255, 130, 253);
-border-radius:20px;</string>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -176,40 +196,20 @@ border-radius:20px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>417</width>
-       <height>317</height>
+       <width>419</width>
+       <height>214</height>
       </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(255, 255, 255,0);
-border:0px solid rgb(255, 85, 255);
-border-radius:20px;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="boton_agregar_patron">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>41</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-border-radius:20px;
-font: 14pt &quot;MS Shell Dlg 2&quot;;
-background-color: rgb(170, 255, 255);
-	color: rgb(0, 85, 255);
-}
-QPushButton:hover{
-background-color: rgb(200, 255, 255);
-	color: rgb(0, 170, 255);
-}</string>
-        </property>
+       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Agregar nuevo patron</string>
+         <string>TextLabel</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listWidget"/>
       </item>
      </layout>
     </widget>

@@ -26,12 +26,12 @@
     <string notr="true">QWidget#bgwidget{background-color:qlineargradient(spread:reflect, x1:0.631, y1:0.840909, x2:0.266591, y2:0.13, stop:0 rgba(232, 255, 255, 255), stop:1 rgba(230, 147, 230, 255));}
 </string>
    </property>
-   <widget class="QPushButton" name="boton_editar_cuenta">
+   <widget class="QPushButton" name="boton_nuevo_usuario">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>460</y>
-      <width>201</width>
+      <x>270</x>
+      <y>490</y>
+      <width>211</width>
       <height>41</height>
      </rect>
     </property>
@@ -48,15 +48,15 @@ background-color: rgb(200, 255, 255);
 }</string>
     </property>
     <property name="text">
-     <string>Editar cuenta</string>
+     <string>Guardar</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>235</x>
       <y>90</y>
-      <width>321</width>
+      <width>291</width>
       <height>61</height>
      </rect>
     </property>
@@ -65,7 +65,10 @@ background-color: rgb(200, 255, 255);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Gestiona tu cuenta</string>
+     <string>Editar patron</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="adv_ingreso">
@@ -111,30 +114,6 @@ color: rgb(255, 130, 253);</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="boton_regreso">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>15</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-background-image: url(&quot;Icons/return.png&quot;);
-background-repeat: no-repeat;
-background-position: center;
-background-color: rgb(255, 255, 255);
-}
-QPushButton:hover{
-background-color:rgb(255, 220, 255);
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="boton_cerrar_sesion">
     <property name="geometry">
      <rect>
@@ -159,13 +138,37 @@ background-color:rgb(255, 220, 255);
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="boton_cuenta">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>15</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-image: url(&quot;Icons/account.png&quot;);
+background-repeat: no-repeat;
+background-position: center;
+background-color: rgb(255, 255, 255);
+}
+QPushButton:hover{
+background-color:rgb(255, 220, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>155</y>
-      <width>476</width>
-      <height>286</height>
+      <x>55</x>
+      <y>160</y>
+      <width>651</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -180,9 +183,9 @@ border-radius:20px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>455</width>
-       <height>449</height>
+       <y>-75</y>
+       <width>630</width>
+       <height>484</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -192,239 +195,255 @@ border-radius:20px;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label_13">
+       <widget class="QLabel" name="label_3">
         <property name="styleSheet">
          <string notr="true">QLabel{
 background-color: rgba(255, 255, 255, 0);
-border:10px solid;
 border-color: rgba(255, 255, 255, 0);
-font-size:15pt;
-color: rgb(255, 130, 253);
+font-size:12pt;
 }</string>
         </property>
         <property name="text">
-         <string>Cuenta</string>
+         <string>Titulo</string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_8">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-background-color: rgba(255, 255, 255, 0);
-border-color: rgba(255, 255, 255, 0);
-font-size:12pt;
-}</string>
-          </property>
-          <property name="text">
-           <string>Correo</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="correo_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-background: rgba(255, 255, 255, 50);
-border: 2px solid rgb(170, 0, 255);
-border-radius:10px;
-font-size:12pt;
-}</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_9">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-background-color: rgba(255, 255, 255, 0);
-border-color: rgba(255, 255, 255, 0);
-font-size:12pt;
-}</string>
-          </property>
-          <property name="text">
-           <string>Contraseña</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="contra_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-background: rgba(255, 255, 255, 50);
-border: 2px solid rgb(170, 0, 255);
-border-radius:10px;
-font-size:12pt;
-}</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="Line" name="line">
+       <widget class="QLineEdit" name="nombres_in">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(254, 142, 252);
-border:20px;</string>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <string notr="true">QLineEdit{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:12pt;
+}
+QLineEdit:focus{
+border: 2px solid rgb(255, 100, 255);
+}</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="label_5">
         <property name="styleSheet">
          <string notr="true">QLabel{
 background-color: rgba(255, 255, 255, 0);
-border:10px solid;
 border-color: rgba(255, 255, 255, 0);
-font-size:15pt;
-color: rgb(255, 130, 253);
+font-size:12pt;
 }</string>
         </property>
         <property name="text">
-         <string>Datos usuario</string>
+         <string>Categorias</string>
         </property>
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-background-color: rgba(255, 255, 255, 0);
-border-color: rgba(255, 255, 255, 0);
-font-size:12pt;
-}</string>
-          </property>
-          <property name="text">
-           <string>Nombres</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="nombres_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+       <widget class="QPlainTextEdit" name="plainTextEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit{
 background: rgba(255, 255, 255, 50);
 border: 2px solid rgb(170, 0, 255);
 border-radius:10px;
 font-size:12pt;
+}
+QPlainTextEdit:focus{
+border: 2px solid rgb(255, 100, 255);
 }</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 background-color: rgba(255, 255, 255, 0);
 border-color: rgba(255, 255, 255, 0);
 font-size:12pt;
 }</string>
-          </property>
-          <property name="text">
-           <string>Apellidos</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="apellidos_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>Materiales</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit{
 background: rgba(255, 255, 255, 50);
 border: 2px solid rgb(170, 0, 255);
 border-radius:10px;
 font-size:12pt;
+}
+QPlainTextEdit:focus{
+border: 2px solid rgb(255, 100, 255);
 }</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 background-color: rgba(255, 255, 255, 0);
 border-color: rgba(255, 255, 255, 0);
 font-size:12pt;
 }</string>
-          </property>
-          <property name="text">
-           <string>Usuario</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="nickname_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>Abreviaturas</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit{
 background: rgba(255, 255, 255, 50);
 border: 2px solid rgb(170, 0, 255);
 border-radius:10px;
 font-size:12pt;
+}
+QPlainTextEdit:focus{
+border: 2px solid rgb(255, 100, 255);
 }</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_7">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_8">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 background-color: rgba(255, 255, 255, 0);
 border-color: rgba(255, 255, 255, 0);
 font-size:12pt;
 }</string>
-          </property>
-          <property name="text">
-           <string>Fecha de nacimiento</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="fecha_nacimiento_label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>Pasos</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEdit_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPlainTextEdit{
 background: rgba(255, 255, 255, 50);
 border: 2px solid rgb(170, 0, 255);
 border-radius:10px;
 font-size:12pt;
+}
+QPlainTextEdit:focus{
+border: 2px solid rgb(255, 100, 255);
 }</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="verticalScrollBarPolicy">
+         <enum>Qt::ScrollBarAsNeeded</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </widget>
-   <widget class="QPushButton" name="boton_editar_datos">
+   <widget class="QPushButton" name="boton_regreso">
     <property name="geometry">
      <rect>
-      <x>415</x>
-      <y>460</y>
-      <width>201</width>
+      <x>15</x>
+      <y>15</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-image: url(&quot;Icons/return.png&quot;);
+background-repeat: no-repeat;
+background-position: center;
+background-color: rgb(255, 255, 255);
+}
+QPushButton:hover{
+background-color:rgb(255, 220, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boton_eliminar_cuenta">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>161</width>
       <height>41</height>
      </rect>
     </property>
@@ -432,16 +451,16 @@ font-size:12pt;
      <string notr="true">QPushButton{
 border-radius:20px;
 font: 14pt &quot;MS Shell Dlg 2&quot;;
-background-color: rgb(170, 255, 255);
-	color: rgb(0, 85, 255);
+background-color: rgb(255, 85, 127);
+	color:rgb(170, 0, 0);
 }
 QPushButton:hover{
-background-color: rgb(200, 255, 255);
-	color: rgb(0, 170, 255);
+background-color: rgb(179, 59, 89);
+	color: rgb(85, 0, 0);
 }</string>
     </property>
     <property name="text">
-     <string>Editar datos</string>
+     <string>Eliminar Patron</string>
     </property>
    </widget>
   </widget>
