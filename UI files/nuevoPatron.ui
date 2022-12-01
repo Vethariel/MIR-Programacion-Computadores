@@ -209,7 +209,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="nombres_in">
+       <widget class="QLineEdit" name="titulo_in">
         <property name="styleSheet">
          <string notr="true">QLineEdit{
 background: rgba(255, 255, 255, 50);
@@ -238,7 +238,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit">
+       <widget class="QPlainTextEdit" name="categorias_in">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -285,7 +285,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit_2">
+       <widget class="QPlainTextEdit" name="materiales_in">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -332,7 +332,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit_3">
+       <widget class="QPlainTextEdit" name="abreviaturas_in">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -379,7 +379,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QPlainTextEdit" name="plainTextEdit_4">
+       <widget class="QPlainTextEdit" name="pasos_in">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -413,6 +413,30 @@ border: 2px solid rgb(255, 100, 255);
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="boton_regreso">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>15</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-image: url(&quot;Icons/return.png&quot;);
+background-repeat: no-repeat;
+background-position: center;
+background-color: rgb(255, 255, 255);
+}
+QPushButton:hover{
+background-color:rgb(255, 220, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>

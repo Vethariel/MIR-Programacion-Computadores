@@ -154,48 +154,23 @@ color: rgb(255, 255, 255);</string>
      <string>Elije un patron para comenzar</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QPushButton" name="boton_agregar_patron">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>200</y>
-      <width>421</width>
-      <height>321</height>
+      <x>175</x>
+      <y>450</y>
+      <width>406</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>41</height>
+     </size>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255,50);
-border:2px solid rgb(255, 130, 253);
-border-radius:20px;</string>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>417</width>
-       <height>317</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgba(255, 255, 255,0);
-border:0px solid rgb(255, 85, 255);
-border-radius:20px;</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="boton_agregar_patron">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>41</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
+     <string notr="true">QPushButton{
 border-radius:20px;
 font: 14pt &quot;MS Shell Dlg 2&quot;;
 background-color: rgb(170, 255, 255);
@@ -205,14 +180,127 @@ QPushButton:hover{
 background-color: rgb(200, 255, 255);
 	color: rgb(0, 170, 255);
 }</string>
-        </property>
-        <property name="text">
-         <string>Agregar nuevo patron</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    </property>
+    <property name="text">
+     <string>Agregar nuevo patron</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="patron_label">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>260</y>
+      <width>421</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+background: rgba(255, 255, 255, 50);
+border: 2px solid rgb(170, 0, 255);
+border-radius:10px;
+font-size:18pt;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boton_anterior">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>345</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(170, 255, 255);
+	color: rgb(0, 85, 255);
+}
+QPushButton:hover{
+background-color: rgb(200, 255, 255);
+	color: rgb(0, 170, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Anterior</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boton_siguiente">
+    <property name="geometry">
+     <rect>
+      <x>485</x>
+      <y>345</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(170, 255, 255);
+	color: rgb(0, 85, 255);
+}
+QPushButton:hover{
+background-color: rgb(200, 255, 255);
+	color: rgb(0, 170, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Siguiente</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boton_ver">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>345</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>41</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+border-radius:20px;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
+background-color: rgb(170, 255, 255);
+	color: rgb(0, 85, 255);
+}
+QPushButton:hover{
+background-color: rgb(200, 255, 255);
+	color: rgb(0, 170, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Ver</string>
+    </property>
    </widget>
   </widget>
  </widget>

@@ -161,7 +161,7 @@ border-radius:20px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-163</y>
+       <y>0</y>
        <width>630</width>
        <height>482</height>
       </rect>
@@ -190,7 +190,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="titulo_label">
         <property name="styleSheet">
          <string notr="true">QLabel{
 background: rgba(255, 255, 255, 50);
@@ -219,7 +219,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser">
+       <widget class="QTextBrowser" name="categorias_label">
         <property name="styleSheet">
          <string notr="true">QTextBrowser{
 background: rgba(255, 255, 255, 50);
@@ -245,7 +245,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser_2">
+       <widget class="QTextBrowser" name="materiales_label">
         <property name="styleSheet">
          <string notr="true">QTextBrowser{
 background: rgba(255, 255, 255, 50);
@@ -271,7 +271,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser_3">
+       <widget class="QTextBrowser" name="abreviaturas_label">
         <property name="styleSheet">
          <string notr="true">QTextBrowser{
 background: rgba(255, 255, 255, 50);
@@ -297,7 +297,7 @@ font-size:12pt;
        </widget>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textBrowser_4">
+       <widget class="QTextBrowser" name="pasos_label">
         <property name="styleSheet">
          <string notr="true">QTextBrowser{
 background: rgba(255, 255, 255, 50);
@@ -360,7 +360,7 @@ background-color: rgb(200, 255, 255);
      <string>Hacer seguimiento</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="boton_editar_cuenta">
+   <widget class="QPushButton" name="boton_editar_patron">
     <property name="geometry">
      <rect>
       <x>155</x>
